@@ -12,7 +12,7 @@ services:
 
   db:
     image: postgres
-    container_name: pg-sushi-users
+    container_name: pg-sushi-orders
     restart: always
     env_file:    
       - .env     
