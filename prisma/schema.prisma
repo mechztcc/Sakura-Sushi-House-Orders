@@ -23,10 +23,11 @@ model Order {
 }
 
 model Product {
-  id      Int     @id
-  name    String
-  price   String
-  count   Int
-  orderId String?
-  Order   Order?  @relation(fields: [orderId], references: [id])
+  id         String  @id @default(uuid())
+  externalId Int
+  name       String
+  price      String
+  count      Int
+  orderId    String?
+  Order      Order?  @relation(fields: [orderId], references: [id])
 }
