@@ -9,7 +9,7 @@ import {
 import { CreateOrderService } from '../services/create-order/create-order.service';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { AuthorizationInterceptor } from 'src/shared/interceptors/authorization/authorization.interceptor';
-import { EventPattern } from '@nestjs/microservices';
+import { Ctx, EventPattern, RmqContext } from '@nestjs/microservices';
 import { UserCredentials } from 'src/shared/decorators/user-credentials/user-credentials.decorator';
 import { FindByUserService } from '../services/find-by-user/find-by-user.service';
 
@@ -30,9 +30,8 @@ export class OrdersController {
     });
   }
 
-  @Get()
-  @UseInterceptors(AuthorizationInterceptor)
-  async findByUser(@UserCredentials() user_id: any) {
+  @EventPattern('list_orders_by_user')
+  async findByUser(user_id: any) {
     return await this.findByUserService.execute(user_id);
   }
 

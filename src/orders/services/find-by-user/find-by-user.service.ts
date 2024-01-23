@@ -6,6 +6,7 @@ export class FindByUserService {
   constructor(private readonly prisma: PrismaService) {}
 
   async execute(id: string) {
-    return await this.prisma.order.findMany({ where: { userId: id } });
+    const orders = await this.prisma.order.findMany({ where: { userId: id } });
+    return orders;
   }
 }
