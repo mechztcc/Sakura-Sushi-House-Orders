@@ -38,15 +38,16 @@ export class OrdersController {
   @EventPattern('create_order')
   async handleCreateOrder({
     preferences,
-    products,
+    product,
     user_id,
   }: {
     preferences: string;
-    products: any[];
+    product: any[];
     user_id: any;
   }) {
+
     return this.createOrdersService.execute({
-      data: { preferences, products },
+      data: { preferences, product },
       userId: user_id,
     });
   }

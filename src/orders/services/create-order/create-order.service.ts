@@ -11,7 +11,7 @@ export class CreateOrderService {
   constructor(private readonly prisma: PrismaService) {}
 
   async execute({ data, userId }: IRequest) {
-    const bulkProds = data.products.map((prod) => {
+    const bulkProds = data.product.map((prod) => {
       return {
         externalId: prod.id,
         name: prod.name,
