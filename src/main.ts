@@ -10,9 +10,8 @@ async function bootstrap() {
     {
       transport: Transport.RMQ,
       options: {
-        noAck: false,
         urls: [
-          `amqp://${process.env.RABBITMQ_DEFAULT_USER}:${process.env.RABBITMQ_DEFAULT_PASS}@localhost:5672`,
+          `amqps://${process.env.RABBITMQ_DEFAULT_USER}:${process.env.RABBITMQ_DEFAULT_PASS}@${process.env.RABBITMQ_DEFAULT_HOST}/${process.env.RABBITMQ_DEFAULT_USER}`
         ],
         queue: 'orders_queue',
         queueOptions: {
